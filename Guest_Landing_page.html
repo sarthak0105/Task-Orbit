@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <link rel="stylesheet" href="Landing.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="circle-logo">
+        <img src="public/whatsapp-image-20240818-at-83859-amremovebgpreview-2@2x.png" alt="Logo">
+      </div>
+      <nav>
+        <ul>
+		              <li><span class="material-symbols-outlined">home</span><a href="Guest_Landing_page.html">Home</a></li>
+                   
+                    <li><span class="material-symbols-outlined">info</span><a href="About_Us_Guest.html">About us</a>
+			</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section class="logo-animation">
+		      <div class="top-right-icons">
+                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#"><i class="fas fa-cog"></i></a>
+                <a href="#"><i class="fas fa-right-from-bracket" id="logoutIcon"></i></a>
+                <a href="#"><i id="theme-toggle" class="fas fa-moon" class="fas fa-moon"></i></a>
+            </div>
+	
+        <video autoplay loop muted class="large-video">
+		  
+          <source src="public/Bouncing-period-[remix] (1).mp4" type="video/mp4">
+        </video>
+      </section>
+      <div class="event-container">
+  <h2 class="event-title">Current Events</h2>
+
+  <div id="event-card-container"></div>
+</div>
+      
+      <h2 class="map-title">Event Location</h2>
+      <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3821.6753176908583!2d74.23982587451061!3d16.693123222435375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc1003c1a127f07%3A0x46fe34fd32993356!2s9th%20Ln%2C%20Kolhapur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1728973735467!5m2!1sen!2sin" width="1090" height="200" style="border: 9px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+  </div>
+
+      
+
+  <script>
+
+
+
+
+
+
+
+// Load event information on page load
+document.addEventListener('DOMContentLoaded', loadEventInfo);
+
+async function loadEventInfo() {
+  try {
+    const response = await fetch('/get-event');
+    if (!response.ok) throw new Error("Failed to fetch event information.");
+
+    const eventData = await response.json();
+
+    // Create the event card element based on fetched data
+    const eventCard = document.createElement('div');
+    eventCard.classList.add('event-card');
+
+    const eventName = document.createElement('p');
+    eventName.textContent = `Event: ${eventData.eventname}`;
+    eventCard.appendChild(eventName);
+
+    const eventDate = document.createElement('p');
+    eventDate.textContent = `Date: ${eventData.date}`;
+    eventCard.appendChild(eventDate);
+
+    const eventDescription = document.createElement('p'); // Assuming time is available
+    eventDescription.textContent = `Description: ${eventData.description}`; // Adjust based on your data
+    eventCard.appendChild(eventDescription); // Add time if available
+
+    const registerButton = document.createElement('a');
+    registerButton.href = "guest_registeration.html";
+
+    const registerButtonElement = document.createElement('button');
+    registerButtonElement.classList.add('register-button');
+    registerButtonElement.textContent = 'Register';
+    registerButton.appendChild(registerButtonElement);
+
+    eventCard.appendChild(registerButton);
+
+    // Get the event card container and append the created event card
+    const eventCardContainer = document.getElementById('event-card-container');
+    eventCardContainer.appendChild(eventCard);
+
+  } catch (error) {
+    console.error("Error loading event information:", error);
+  }
+}
+
+
+   // Theme toggle functionality
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        // Apply the saved theme on page load
+        document.body.classList.add(currentTheme);
+
+        themeToggleButton.addEventListener('click', () => {
+            if (document.body.classList.contains('light')) {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggleButton.classList.replace('fa-moon', 'fa-sun'); // Change icon to sun
+            } else {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeToggleButton.classList.replace('fa-sun', 'fa-moon'); // Change icon to moon
+            }
+        });
+
+		  // Logout functionality when clicking the logout icon
+      document.getElementById('logoutIcon').addEventListener('click', function () {
+        // Optionally, clear session or localStorage data
+        // localStorage.removeItem('userToken'); // Example if you're using localStorage
+        
+        // Redirect to the login page
+        window.location.href = 'login-page.html';
+      });
+  </script>
+  
+  <script src="landing.js"></script>
+</body>
+</html>

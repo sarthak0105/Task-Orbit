@@ -1,0 +1,13 @@
+{
+  "locofyConfig": {
+    "id": "66cfe5512408ec967bf4660b",
+    "framework": "html-css",
+    "typescript": false,
+    "styling": "CSS",
+    "unit": "px",
+    "naming": "Kebab Case",
+    "path": "public/",
+    "componentsPath": "/home/parthgote/TaskOrbit2/src/components",
+    "screensPath": "/home/parthgote/TaskOrbit2/src/pages"
+  }
+}

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskOrbit Profile</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+    <link rel="stylesheet" href="profile.css">
+
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            
+            <div class="logo"></div>
+            <img src="public/whatsapp-image-20240818-at-83859-amremovebgpreview-2@2x.png" alt="logo" class="logo">
+            <nav>
+                <ul>
+                    <li><span class="material-symbols-outlined">home</span><a href="Home_page.html">Home</a></li>
+                    <li><span class="material-symbols-outlined">paid</span><a href="Finances.html">Finances</a></li>        
+                    <li><span class="material-symbols-outlined">groups</span><a href="Teams.html">Teams</a></li>
+                    <li><span class="material-symbols-outlined">account_circle</span><a href="profile.html">Profile</a></li>
+                    <li><span class="material-symbols-outlined">info</span><a href="About_Us.html">About us</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Profile Section -->
+                <p class="container-heading" id="Pper">Profile</p>
+                <section class="profile">
+                    <div class="profile-info">
+                         <div class="avatar" id="avatarContainer">
+            <img id="avatarImage" src="public/default-avatar.png" alt="Profile Avatar">
+        </div>
+        
+        <!-- Hidden file input for image selection -->
+        <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+        
+        <!-- Hidden file input for image selection -->
+		  
+                        <div class="user-details">
+                            <h3 id="user-name"></h3>
+                            <p>Student At KIT CoEK</p>
+                            <p>Volunteer</p>
+                        </div>
+                    </div>
+                </section>
+
+                <p class="container-heading" id="Pper">Performance Statistics</p>
+<section class="performance">
+    <div class="performance-info">
+        <div class="performance-description">
+            <p>Your performance until now has been satisfactory but you can still do better and complete the remaining tasks.</p>
+        </div>
+        <div class="stats">
+            <div class="stat-item">
+                <canvas id="gradeCanvas" width="100" height="100"></canvas>
+                <p>Grade</p>
+            </div>
+            <div class="stat-item">
+                <canvas id="progressCanvas" width="100" height="100"></canvas>
+                <p>Progress</p>
+            </div>
+        </div>
+    </div>
+
+<div class="messages-container">
+  <h3>Messages</h3>
+  <ul id="messagesList"></ul>
+</div>
+</section>
+
+            </div>
+
+            <!-- Right Column for Upcoming Tasks -->
+            <div class="right-column">
+                <div class="top-right-icons">
+                    <a href="#"><i class="fas fa-bell"></i></a>
+                    <a href="#"><i class="fas fa-cog"></i></a>
+                    <a href="#"><i class="fas fa-right-from-bracket" id="logoutIcon"></i></a>
+                    <a href="#"><i id="theme-toggle" class="fas fa-moon" class="fas fa-moon"></i></a>
+                </div>
+
+
+                <!-- Upcoming Tasks Section -->
+                <p class="container-heading" id="UT">Upcoming Tasks</p>
+                <section class="upcoming-tasks">
+                    
+                    <ul id="task-list">
+                        
+                    </ul>
+                    <!-- Submit Progress Button -->
+                    <button id="submitProgress">Submit Progress</button>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script> 
+      
+
+
+
+
+
+async function loadMessages() {
+  try {
+    const response = await fetch('/get-messages'); // No username needed
+    if (!response.ok) throw new Error('Failed to load messages');
+
+    const data = await response.json();
+
+    const messagesList = document.getElementById('messagesList');
+    messagesList.innerHTML = ''; // Clear previous messages
+
+    data.messages.forEach(message => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${message.text} - ${new Date(message.time).toLocaleString()}`;
+      messagesList.appendChild(listItem);
+    });
+  } catch (error) {
+    console.error('Error loading messages:', error);
+  }
+}
+
+// Load messages on page load
+document.addEventListener('DOMContentLoaded', loadMessages);
+
+
+
+
+
+		  // Theme toggle functionality
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        // Apply the saved theme on page load
+        document.body.classList.add(currentTheme);
+
+        themeToggleButton.addEventListener('click', () => {
+            if (document.body.classList.contains('light')) {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggleButton.classList.replace('fa-moon', 'fa-sun'); // Change icon to sun
+            } else {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeToggleButton.classList.replace('fa-sun', 'fa-moon'); // Change icon to moon
+            }
+        });
+
+        // Set the initial icon based on the saved theme
+        themeToggleButton.classList.add(currentTheme === 'light' ? 'fa-moon' : 'fa-sun');
+
+	 // Logout functionality when clicking the logout icon
+      document.getElementById('logoutIcon').addEventListener('click', function () {
+        // Optionally, clear session or localStorage data
+        // localStorage.removeItem('userToken'); // Example if you're using localStorage
+        
+        // Redirect to the login page
+        window.location.href = 'login-page.html';
+      });
+
+
+		// Trigger the file input when the avatar is clicked
+document.getElementById('avatarContainer').addEventListener('click', function() {
+    document.getElementById('avatarInput').click(); // Simulate a click on the hidden file input
+});
+
+
+
+
+
+
+
+
+
+// Add this to profile.html inside your script tag
+async function loadUserTasks() {
+    try {
+        const response = await fetch('/user-tasks');
+        const data = await response.json();
+        
+        const taskList = document.getElementById('task-list');
+        taskList.innerHTML = ''; // Clear existing tasks
+        
+        // Display tasks from database
+        data.tasks.forEach(task => {
+            const taskItem = document.createElement('div');
+            taskItem.className = 'back-col';
+            
+            const li = document.createElement('li');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'task-checkbox';
+            checkbox.checked = task.completed;
+            
+            // Add change event listener for checkbox
+            checkbox.addEventListener('change', async (e) => {
+                try {
+                    await fetch('/update-task', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            taskText: task.taskText,
+                            completed: e.target.checked
+                        })
+                    });
+                } catch (error) {
+                    console.error('Error updating task:', error);
+                }
+            });
+            
+            li.appendChild(checkbox);
+            li.appendChild(document.createTextNode(' ' + task.taskText));
+            taskItem.appendChild(li);
+            taskList.appendChild(taskItem);
+        });
+    } catch (error) {
+        console.error('Error loading tasks:', error);
+    }
+}
+
+// Call this function when the profile page loads
+document.addEventListener('DOMContentLoaded', loadUserTasks);
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById('avatarInput').addEventListener('change', function() {
+    const file = this.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function() {
+        const base64Image = reader.result;
+
+        // Send the base64 image and user email to the server
+        fetch('/upload-avatar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: 'user-email',  // Replace this with the actual logged-in user's email
+                image: base64Image
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.user && data.user.avatar) {
+                // Update the profile image on the page
+                document.getElementById('avatarImage').src = data.user.avatar;
+                alert('Profile image uploaded successfully!');
+            }
+        })
+        .catch(err => console.error('Error uploading image:', err));
+    };
+
+    reader.readAsDataURL(file);
+});
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    fetch('/getUser')
+        .then(response => response.json())
+        .then(user => {
+            if (user && user.name) {
+                document.getElementById('user-name').textContent = ` ${user.name}`;
+                
+                if (user.avatar) {
+                    // Update the profile image source with Base64 string
+                    document.getElementById('avatarImage').src = user.avatar;
+                } else {
+                    // Default image if no avatar is found
+                    document.getElementById('avatarImage').src = 'public/default-avatar.png';
+                }
+            } else {
+                window.location.href = '/'; // Redirect to login if not authenticated
+            }
+        })
+        .catch(err => console.error('Error fetching user:', err));
+});
+
+
+
+
+
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

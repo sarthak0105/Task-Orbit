@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kosugi&display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            font-family: 'Kosugi', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .animated-dots {
+            font-size: 3rem;
+            display: inline-block;
+            opacity: 1;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .subtext {
+            margin-top: 1rem;
+            font-size: 1 rem; /* Increased size */
+            font-weight: normal; /* Optional: for emphasis */
+            opacity: 0;
+            animation: fadeIn 1s 0.5s forwards; /* Fade-in without vertical movement */
+            
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="animated-dots" id="mainText"></div>
+        <div class="subtext" id="subText">Getting things ready...</div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const mainText = document.getElementById('mainText');
+            let dotCount = 0;
+            setInterval(() => {
+                dotCount = (dotCount + 1) % 4; // Cycle from 0 to 3
+                mainText.textContent = '.'.repeat(dotCount); // Display dots
+                mainText.style.opacity = 0.3 + 0.7 * (dotCount / 3); // Adjust opacity for smooth transition
+            }, 500); // Adjust speed as needed
+
+            // Redirect to a new page after 7 seconds
+            setTimeout(() => {
+                window.location.href = 'Admin.html'; // Replace with the URL of the new page
+            }, 7000); // Adjust timing as needed
+        });
+
+
+      const themeToggleButton = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        // Apply the saved theme on page load
+        document.body.classList.add(currentTheme);
+
+        themeToggleButton.addEventListener('click', () => {
+            if (document.body.classList.contains('light')) {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggleButton.classList.replace('fa-moon', 'fa-sun'); // Change icon to sun
+            } else {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeToggleButton.classList.replace('fa-sun', 'fa-moon'); // Change icon to moon
+            }
+        });
+    </script>
+</body>
+</html>

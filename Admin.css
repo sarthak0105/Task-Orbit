@@ -1,0 +1,489 @@
+body {
+    margin: 0;
+    font-family: 'Kosugi';
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+	 
+}
+
+.sidebar {
+    width: 150px;
+    background-color: #0A0F1D;
+    color: white;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height:auto; 
+	 min-height:350vh;
+}
+.material-symbols-outlined{
+    font-size: 7px;
+    margin-left : 5px;
+    margin-bottom: 10px;
+    transform: translateY(5px);
+}
+.logo {
+    position: absolute;
+    height: auto;
+    left: -30px;
+ 
+    width: 200px;
+
+}
+
+h3{
+    transform:translateY(-290px);
+	 margin-left:220px;
+    font-family: Kosugi Maru;
+    font-size: 24px;
+	 font-weight:normal;
+
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 300px;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+    transform: translateY(200px);
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 60px;
+    margin-left: 15px;
+    margin-top: 20px;
+    
+    font-family: Kosugi Maru;
+}
+.top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+    margin-right: 26px;
+
+}
+
+.top-right-icons a {
+    color: rgb(10, 15, 29);
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.top-right-icons a:hover {
+    color: #d8dadc;
+}
+
+
+
+
+.event-container {
+    background-color: #fff; 
+	 padding:20px;
+    height: auto;
+    border-radius: 9px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    margin-left: 200px;
+    margin-top: 120px;
+    width: 590px;
+	  font-size:21px;
+	 
+}
+
+
+
+.leaderboard-container {
+    background-color: white;
+    /* padding: 13px; */
+    border-radius: 10px;
+    width: 630px;
+    height: 405px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    left: 20px;
+    margin-left: 220px;
+    overflow-Y:scroll;
+    transform: translateY(-300px);
+    margin-right: 100px;
+}
+
+.leader-team {
+  font-weight: bold;
+  color: #666;
+  margin: 0 150px; /* Adds spacing around the separator */
+}
+
+
+
+
+.leader-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 21px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    transform: translateY(10px);
+    font-family: Kosugi Maru;
+}
+
+.leader-item:last-child {
+    border-bottom: none;
+}
+
+.rank-badge {
+    width: 30px;
+    height: 30px;
+	 
+    background-color: #FFD700; /* Gold color */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+
+
+.leader-name {
+    font-size: 18px;
+    font-family: 'Kosugi Maru', sans-serif;
+    color: #333;
+    margin-left: 10px;
+    flex-grow: 1;
+    cursor:pointer;
+}
+
+/* Maps Section */
+.map-section {
+    margin-top: 80px; /* Adjust margin if needed */
+}
+
+.map-container {
+    background-color: #fff;
+    border-radius: 9px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+    margin-left: 220px;
+    transform: translateY(-300px);
+    width: 1080px;
+    height: 200px;
+}
+
+.map-title {
+    font-size: 24px;
+    position: relative;
+    left: 220px;
+    bottom: 320px;
+    font-family: Kosugi Maru;
+}
+
+
+.budget-container {
+    background-color: #fff; 
+    padding: 15px; 
+    border-radius: 9px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    height: 400px;
+    top: 140px;
+    right: 25px;
+    width:400px;
+    height: 742px;
+    position: absolute;
+	 font-size:21px;
+}
+
+.budget-overview{
+    font-size: 24px;
+    position: absoulute;
+    
+    margin-left: 910px;
+    transform:translateY(-1490px);
+    font-family: Kosugi Maru;
+    z-index:1;
+}
+
+
+.Eventhead{
+    font-size: 24px;
+    position: absoulte;
+    bottom:630px;
+    transform:translateY(-650px);
+    margin-left: 220px;
+    font-family: Kosugi Maru;
+    z-index:1;
+
+} 
+
+
+
+/* For Admin budget chart */
+.budget-chart-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+	 
+}
+
+.pie-chart {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(#f8c967 0deg, blue 0deg, blue 360deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.pie-chart::before {
+  content: "";
+  position: center;
+  width: 140px; /* Adjust to control the inner circle size */
+  height: 140px;
+  background-color: white; /* Inner circle color */
+  border-radius: 50%;
+}
+
+.percentage-text {
+  font-size: 20px;
+  color: #555;
+  position: absolute;
+}
+
+.budget-input {
+    margin-top:50px;
+    display: flex;
+    align-items: center;
+    
+    width:450px;
+
+
+}
+
+.budget-input input {
+    width: 130px;
+    padding: 5px;
+	 border-radius:10px;
+    font-size: 16px; 
+    outline:none;
+	 border:none;
+	 font-size:21px;
+}
+
+.budget-input button {
+    padding: 5px 10px;
+    background-color: #02021C;
+    color: #fff;
+    border: none;
+	 border-radius:3px;
+    cursor: pointer;
+}
+
+.budget-chart-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+h4 {
+  font-size: 20px; /* Adjust font size */
+  color: #333; /* Dark gray color */
+  font-weight: bold; /* Make the header bold */
+  margin-left: 15px; /* Add space above the header */
+  margin-bottom:-10px;
+  text-transform: uppercase; /* Make the text uppercase */
+  letter-spacing: 1px; /* Add letter spacing */
+}
+
+#event-name{
+    background-color: transparent;
+    border-color: transparent;
+    border: none;
+    outline: none;
+	 margin-bottom:10px;
+	 font-size:21px;
+
+}
+
+
+#event-date{
+    background-color: transparent;
+    border-color: transparent;
+    border: none;
+    outline: none;
+    margin-bottom:10px;
+     font-size:21px;
+}
+
+#event-location{
+    background-color: transparent;
+    border-color: transparent;
+    border: none;
+    outline: none;
+    margin-bottom:10px;
+	  font-size:21px;
+}
+
+textarea#event-description{
+    background-color: transparent;
+    border-color: transparent;
+    border: none;
+    outline: none;
+    height:30px;
+    width:250px;
+    white-space: wrap;
+	 resize:none;  
+	 font-size:21px;
+	 transform:translateY(14px);
+    
+    }
+
+.Eventinfo{
+    margin-top:20px;
+    background-color: transparent;
+    cursor:pointer;
+    border-radius: 5px;
+	  font-size:21px;
+
+}
+
+
+
+
+
+
+
+body.dark{
+   background-color: #181818;
+   color: white;
+
+}
+
+body.dark .event-container{
+    background-color: #282828;
+    color: #e0e0e0;
+
+}
+
+.dark #event-name{
+    background-color: transparent;
+    border-color: transparent;
+	 color:white;
+}
+
+.dark #event-date{
+    background-color: transparent;
+    border-color: transparent;
+	 color:white;
+}
+
+.dark #event-location{
+    background-color: transparent;
+    border-color: transparent;
+	 color:white;
+}
+
+.dark #event-description{
+    background-color: transparent;
+    border-color: transparent;
+	 color:white;
+}
+
+
+
+body.dark .percentage-text{
+    color:white;
+}
+
+body.dark .event-details p{
+    color:#e0e0e0;
+
+}
+
+body.dark .Event-container p1{
+    color:#e0e0e0;
+ 
+}
+
+body.dark .leaderboard-container {
+    background-color: #282828;
+    color: white;
+	 }
+
+
+body.dark .leader-name {
+    color:white;
+}
+
+body.dark .budget-container{
+    background-color: #282828;
+    color: #e0e0e0
+}
+
+body.dark .Eventinfo{
+    background-color: #FED36A;
+    color: #282828;
+    
+}
+
+body.dark .top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+    margin-right: 26px;
+}
+
+body.dark .top-right-icons a {
+    color: #d8dadc;
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+body.dark .budget-input input{
+     background:#282828;
+     color:white;
+}
+
+body.dark .top-right-icons a:hover {
+    color: #FFFFFF;
+}
+
+body.dark h4{
+color:white;
+}
+
+body.dark #budget-chart::before {
+    background-color: #282828; /* Center color */ 
+}

@@ -1,0 +1,266 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    overflow-y: scroll;
+	 overflow-x:hidden;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 155px;
+    background-color: #0A0F1D;
+    color: white;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 1200px;
+}
+
+.logo {
+    position: absolute;
+    height: auto;
+    left: -30px;
+    width: 200px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 300px;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+    transform: translateY(200px);
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 60px;
+    margin-left: 15px;
+    margin-top: 20px;
+    font-family: Kosugi Maru;
+}
+
+
+
+.material-symbols-outlined{
+    font-size: 7px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+	 transform:translateY(5px);
+}
+
+.top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+	 z-index:1;
+    margin-right: 55px;
+}
+
+.top-right-icons a {
+    color: rgb(10, 15, 29);
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.top-right-icons a:hover {
+    color: #d8dadc;
+}
+
+.right-column{
+   height:20px;
+}
+
+.right-column h1 {
+    margin-top: 20px;
+    margin-left: 220px;
+    font-size: 28px;
+    color: #0A0F1D;
+    transform: translateY(-680px); /* Adjusted based on Member-container's transform */
+    font-weight: normal;
+    
+}
+
+.Member-container {
+    background-color: white;
+    border-radius: 10px;
+    width: 630px;
+    height: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 220px;
+    margin-right: 100px;
+    transform: translateY(-660px);
+}
+
+
+.calendar {
+    background-color: white;
+    border-radius: 5%;
+    margin-top: -685px;
+	 margin-left:1000px;
+    box-shadow: 0 2px 5px rgba(158, 157, 157, 0.807);
+    width: 350px;
+	 height:500px;
+}
+
+
+.calendar-header {
+    display: flex;
+    font-size:18px;
+	 font-family:Kosugi;
+	 transform:translate(1010px,-675px);
+}
+
+
+
+
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: 'Kosugi Maru', sans-serif;
+    transform: translateY(20px);
+    margin-left: 15px;
+    font-family: Kosugi Maru;
+    font-weight: normal;
+} 
+
+.Member-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 21px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    transform: translateY(10px);
+    font-family: Kosugi Maru;
+}
+
+.Member-item:last-child {
+    border-bottom: none;
+}
+
+.rank-badge {
+    width: 30px;
+    height: 30px;
+    background-color: #FFD700; /* Gold color */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+
+
+.Member-name {
+    font-size: 18px;
+    font-family: 'Kosugi Maru', sans-serif;
+    color: #333;
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+
+.map-title {
+    font-size: 26px;
+    color: rgb(10, 15, 29);
+    font-weight: normal;
+    left: 20px;
+    margin-left: 220px;
+    transform: translateY(-620px);
+}
+
+.map-container{
+    margin-left: 220px;
+    transform: translateY(-600px);
+    
+}
+
+
+
+body.dark {
+    background-color: #181818;
+    color: #e0e0e0;
+}
+
+
+body.dark .container {
+    background-color: #181818;
+    color: #e0e0e0;
+}
+
+body.dark .right-column {
+    background-color: #181818;
+    color: #e0e0e0;
+}
+
+body.dark .Member-container{
+    background-color: #282828;
+    color: white;
+
+}
+
+body.dark .Member-name {
+    color:white;
+}
+
+body.dark .Member-name {
+    color:white;
+}
+
+
+body.dark .map-title {
+    color:white;
+}
+
+
+
+body.dark .top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+    margin-right: 55px;
+}
+
+body.dark .top-right-icons a {
+    color: #d8dadc;
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+body.dark .top-right-icons a:hover {
+    color: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,453 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    height: 100vh;
+	 
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.sidebar {
+    width: 150px;
+    background-color: #0A0F1D;
+    color: white;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Changed from space-between */
+    height: auto; /* Changed from fixed height */
+    min-height: 100vh;
+    
+}
+.logo {
+    position: absolute;
+    height: auto;
+    left: -30px;
+ 
+    width: 200px;
+
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 300px;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+    transform: translateY(200px);
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 60px;
+    margin-left: 15px;
+    margin-top: 20px;
+    
+    font-family: Kosugi Maru;
+}
+.team-icon{
+    color:#e0e0e0;
+   
+}
+
+.material-symbols-outlined{
+    font-size: 7px;
+    margin-left : 5px;
+    margin-bottom: 10px;
+    transform: translate(-2px,6px);
+}
+.top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+    margin-right: 55px;
+}
+
+.top-right-icons a {
+    color: rgb(10, 15, 29);
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.top-right-icons a:hover {
+    color: #d8dadc;
+}
+
+
+
+.teams-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 674px;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(70px);
+    margin-left: 40px;
+    
+    
+}
+
+h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    transform: translateY(70px);
+    margin-left: 43px;
+    font-family: Kosugi Maru;
+}
+
+.team-item {
+    display: flex;
+    align-items: center;
+    padding: 22px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.team-item:last-child {
+    border-bottom: none;
+}
+
+.team-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #0a0a24;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.team-icon img {
+    width: 20px;
+    height: 20px;
+    filter: invert(100%); /* Inverts the color to make icons white */
+}
+
+.team-name {
+    font-size: 20px;
+    color: #333;
+    font-family: Kosugi Maru;
+	 text-decoration:none;
+}
+
+.leaderboard-container {
+    background-color: white;
+    border-radius: 10px;
+    width: 400px;
+	 height:460px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	 transform:translateY(-430px);
+    overflow-Y:scroll;
+    margin-left: 800px;
+
+}
+
+h3 {
+    font-size: 30px;
+    margin-left:800px;
+    font-family: 'Kosugi Maru', sans-serif;
+    transform: translateY(-450px);
+    font-family: Kosugi Maru;
+
+}
+
+.leader-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 8px;
+    border-bottom: 1px solid #e0e0e0;
+    font-family: Kosugi Maru;
+	
+}
+
+.leader-item:last-child {
+    border-bottom: none;
+}
+
+.rank-badge {
+    width: 30px;
+    height: 30px;
+    background-color: #FFD700; /* Gold color */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+.rank-badge.silver {
+    background-color: #C0C0C0; /* Silver color */
+}
+
+.rank-badge.bronze {
+    background-color: #CD7F32; /* Bronze color */
+}
+
+.leader-name {
+    font-size: 18px;
+    font-family: 'Kosugi Maru', sans-serif;
+    color: #333;
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.grade-badge {
+    width: 30px;
+    height: 30px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+}
+
+.grade-badge.gold {
+    background-color: #FFD700; /* Gold for top performer */
+}
+
+.grade-badge.silver {
+    background-color: #C0C0C0; /* Silver */
+}
+
+.grade-badge.bronze {
+    background-color: #CD7F32; /* Bronze */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    height: 100vh; /* Ensures the body takes full height */
+    position: relative; /* Keeps body positioned relative to its elements */
+}
+
+.announcements-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 675px; /* Adjusted width to fit well in the corner */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    bottom: 20px; /* 20px from the bottom */
+    left: 20px; /* 20px from the left */
+    transform: translate(38px,-320px);
+    height:227px;
+}
+
+h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: 'Kosugi Maru', sans-serif;
+    color: #333;
+}
+
+.announcement {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.announcement:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.time {
+    width: 80px;
+    font-size: 14px;
+    color: #555;
+    padding-right: 10px;
+    border-right: 1px solid #e0e0e0;
+}
+
+.announcement-details {
+    font-size: 16px;
+    color: #333;
+    padding-left: 10px;
+}
+
+.progress-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    right: 20px;
+    bottom: 200px;
+    transform: translate(800px,-550px)
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.progress-content {
+    position: relative;
+}
+
+.progress-content p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+
+
+.grade {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+
+
+
+
+
+.progress-badge {
+  background-color: #ff9400; /* Green background */
+  color: white;
+  padding: 10px 3px;
+  width:42px;
+  height:42px;
+  font-size:15px;
+  margin-left: auto;
+  border-radius:50%;
+}
+
+
+#leaderboard-list{
+  margin-bottom:60px;
+  
+}
+
+
+
+
+
+
+
+body.dark {
+    background-color: #181818;
+    color: #e0e0e0;
+}
+
+body.dark .progress-badge{
+    color:black;
+}
+
+body.dark .container {
+    background-color: #181818;
+    color: #e0e0e0;
+}
+
+body.dark .progress-card{
+    background-color: #282828;
+    color: white;
+}
+
+body.dark .announcements-container{
+    background-color: #282828;
+    color: white;
+}
+body.dark .teams-container{
+    background-color: #282828;
+    color: white;
+	 }
+body.dark .announcements-container{
+    background-color: #282828;
+    color: white;
+}
+body.dark .leaderboard-container{
+    background-color: #282828;
+    color: white;
+}
+
+body.dark .head .time{
+    color:white;
+}
+
+body.dark .team-name{
+    color:white;
+}
+
+body.dark .leader-name{
+    color:white;
+}
+
+body.dark .announcement-details{
+    color:white;
+}
+
+body.dark .time{
+    color:white;
+}
+
+body.dark .progress-content p{
+    color:white;
+}
+
+body.dark  .announcements-container h4{
+    color:white;
+}
+
+body.dark .progress-card h1{
+    color:white;
+}
+
+
+
+body.dark .top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+    margin-right: 55px;
+}
+
+body.dark .top-right-icons a {
+    color: #d8dadc;
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+body.dark .top-right-icons a:hover {
+    color: #FFFFFF;
+}

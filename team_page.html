@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="team_page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Teams_info</title>
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo"></div>
+            <img src="public/whatsapp-image-20240818-at-83859-amremovebgpreview-2@2x.png" class="logo">
+            <nav>
+                <ul>
+                    <li><span class="material-symbols-outlined">home</span><a href="Home_page.html">Home</a></li>
+                    <li><span class="material-symbols-outlined">paid</span><a href="Finances.html">Finances</a></li>        
+                    <li><span class="material-symbols-outlined">groups</span><a href="Teams.html">Teams</a></li>
+                    <li><span class="material-symbols-outlined">account_circle</span><a href="profile.html">Profile</a></li>
+                    <li><span class="material-symbols-outlined">info</span><a href="About_Us.html">About us</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <div class="right-column">
+        <div class="top-right-icons">
+            <a href="#"><i class="fas fa-bell"></i></a>
+            <a href="#"><i class="fas fa-cog"></i></a>
+            <a href="#"><i class="fas fa-right-from-bracket" id="logoutIcon"></i></a>
+            <a href="#"><i id="theme-toggle" class="fas fa-moon"></i></a>
+        </div>
+
+        <h1 class="map-title">Media content and Blog</h1>
+
+        <!-- Member Container -->
+        <div class="Member-container">
+            <h2>Team Members</h2>
+            <div id="member-list">
+                <!-- Team members will be loaded here dynamically -->
+            </div>
+        </div>
+
+        <!-- Event Location Section -->
+        <h2 class="map-title">Event Location</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3821.6753176908583!2d74.23982587451061!3d16.693123222435375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc1003c1a127f07%3A0x46fe34fd32993356!2s9th%20Ln%2C%20Kolhapur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1728973735467!5m2!1sen!2sin" width="790" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <p class="calendar-header">Calendar</p>
+    <div class="calendar">
+        <iframe src="https://calendar.google.com/calendar/embed?height=300&wkst=1&ctz=UTC&bgcolor=%23ffffff&showTitle=0&showPrint=0&showCalendars=0&src=cGFydGguZ290ZUBnbWFpbC5jb20&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679" style="border-width:0" width="350" height="500" frameborder="0" scrolling="no"></iframe>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        // Apply the saved theme on page load
+        document.body.classList.add(currentTheme);
+
+        themeToggleButton.addEventListener('click', () => {
+            if (document.body.classList.contains('light')) {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggleButton.classList.replace('fa-moon', 'fa-sun'); // Change icon to sun
+            } else {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeToggleButton.classList.replace('fa-sun', 'fa-moon'); // Change icon to moon
+            }
+        });
+
+        // Set the initial icon based on the saved theme
+        themeToggleButton.classList.add(currentTheme === 'light' ? 'fa-moon' : 'fa-sun');
+
+        // Logout functionality when clicking the logout icon
+        document.getElementById('logoutIcon').addEventListener('click', function () {
+            // Redirect to the login page
+            window.location.href = 'login-page.html';
+        });
+
+        // Function to get the value of a URL parameter by name
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+    const results = regex.exec(url);
+    return results ? decodeURIComponent(results[2].replace(/\+/g, ' ')) : '';
+}
+
+// Get the 'team' parameter from the URL
+const teamName = getParameterByName('team');
+
+        // Set the team name as the title in the page
+        if (teamName) {
+            document.querySelector('.map-title').textContent = `${teamName} Team`;
+        }
+
+// Function to fetch and display team members
+async function loadTeamMembers() {
+    try {
+        const response = await fetch(`/getTeamMembers?team=${teamName}`);
+        if (response.ok) {
+            const teamMembers = await response.json();
+            
+            const memberContainer = document.querySelector('.Member-container');
+            memberContainer.innerHTML = '';  // Clear existing content
+            
+            teamMembers.forEach((member, index) => {
+                const memberItem = document.createElement('div');
+                memberItem.classList.add('Member-item');
+                
+                const rankBadge = document.createElement('div');
+                rankBadge.classList.add('rank-badge');
+                rankBadge.innerHTML = `<span>${index + 1}</span>`;
+                
+                const memberName = document.createElement('span');
+                memberName.classList.add('Member-name');
+                memberName.textContent = member.name;
+                
+                memberItem.appendChild(rankBadge);
+                memberItem.appendChild(memberName);
+                memberContainer.appendChild(memberItem);
+            });
+        } else {
+            console.error('Failed to fetch team members');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Call the function to load team members when the page loads
+window.addEventListener('DOMContentLoaded', loadTeamMembers);
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="login-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400&display=swap"
+    />
+    <title>TaskOrbit-Login Page</title>
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="login-page-inner">
+        <div class="frame-parent">
+          <div class="frame-wrapper">
+            <div class="achieve-your-goals-efficiently-parent">
+              <div class="achieve-your-goals">
+                Achieve your goals efficiently, use TaskOrbit
+              </div>
+              <img
+                class="vuesaxlineartick-circle-icon"
+                loading="lazy"
+                alt=""
+                src="public/vuesaxlineartickcircle.svg"
+              />
+            </div>
+          </div>
+          <img
+            class="leader-with-idea-for-developin-icon"
+            loading="lazy"
+            alt=""
+            src="public/leaderwithideafordevelopingbusinessprocessesorresearchingnewinnovativeprojectsproblemsolvingconceptandeffectivemanagementbusinessmanshandscontrollingbusinessmechanismsvectorre-1@2x.png"
+          />
+        </div>
+      </div>
+      <div class="rectangle-parent">
+        <div class="frame-child"></div>
+        <div class="rectangle-group">
+          <div class="frame-item"></div>
+          <div class="frame-group">
+            <!-- Start of Form -->
+            <form id="login-form" action="/login" method="POST" class="vector-parent">
+              <div class="name-wrapper">
+                <input type="text" id="name" name="name" placeholder="Name" class="input-field" required>
+              </div>
+
+              <div class="e-mail">
+                <input type="email" id="email" name="email" placeholder="E-mail" class="input-field" required>
+              </div>
+
+              <div class="frame-container">
+                <div class="password-wrapper">
+                  <input type="password" id="password" name="password" placeholder="Password" class="input-field" required>
+                </div>
+                <img
+                  class="vuesaxlineareye-slash-icon"
+                  alt=""
+                  src="public/PngItem_4950508.png"
+                />
+              </div>
+              
+              <!-- Submit Button -->
+              <button type="submit" class="vector-group">
+                <img
+					 id="toggle-icon"
+                  class="rectangle-icon"
+                  alt=""
+                  src="./public/rectangle-13.svg"
+                />
+                <div class="log-in">Log In</div>
+              </button>
+            </form>
+            <!-- End of Form -->
+
+            <!-- Message Area -->
+            <div id="message"></div>
+
+          </div>
+        </div>
+        <img
+          class="whatsapp-image-2024-08-18-at-8-icon"
+          loading="lazy"
+          alt=""
+          src="public/whatsapp-image-20240818-at-83859-amremovebgpreview-2@2x.png"
+        />
+      </div>
+    </div>
+
+    
+  </body>
+  <!-- Link to External JavaScript File -->
+    <script src="login.js"></script>
+</html>

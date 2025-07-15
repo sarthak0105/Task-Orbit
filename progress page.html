@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="progress page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <title>Progress Page</title>
+</head>
+<body>
+    <body>
+        <div class="container">
+            
+             <aside class="sidebar">
+            
+            <div class="logo"></div>
+            <img alt="logo" src="public/whatsapp-image-20240818-at-83859-amremovebgpreview-2@2x.png" class="logo">
+            <nav>
+                <ul>
+                    <li><span class="material-symbols-outlined">home</span><a href="Admin.html">Home</a></li>
+                    <li><span class="material-symbols-outlined">task_alt</span><a href="task_allocation.html">Tasks</a></li>        
+                    <li><span class="material-symbols-outlined">monitoring</span><a href="progress page.html">Performace</a></li>
+						  <li><span class="material-symbols-outlined">assured_workload</span><a href="Budget Allocation.html">Budget</a></li>
+                    <li><span class="material-symbols-outlined">person_add</span><a href="Add_User.html">Add User</a></li>
+                    <li><span class="material-symbols-outlined">info</span><a href="About_Us_admin.html">About us</a></li>
+                </ul>
+            </nav>
+        </aside>
+            
+            
+            <div class="right-column">
+                <div class="top-right-icons">
+                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#"><i class="fas fa-cog"></i></a>
+                <a href="#"><i class="fas fa-right-from-bracket" id="logoutIcon"></i></a>
+                <a href="#"><i id="theme-toggle" class="fas fa-moon" class="fas fa-moon"></i></a>
+            </div>
+
+                <div class="card">
+    <h2>Total Registrations</h2>
+<br><br>
+     <span>Total Registrations:</span> <input type="number" id="total-registrations" placeholder="Enter total" onchange="updateTotalRegistrations()">
+<br><br>
+    <div class="field">
+        <span>Confirmed Registrations:</span> <span id="confirmed-registrations">0</span>
+    </div>
+<br><br>
+    <div class="field">
+        <span>Remaining Registrations:</span> <span id="remaining-registrations">0</span>
+    </div>
+<br><br>
+</div>
+                <div class="progress-card">
+    <h3>Total Progress</h3>
+    <div class="progress-circle">
+        <span class="progress-text" id="average-progress-text">0%</span>
+        <svg class="progress-ring" width="120" height="120">
+            <circle class="progress-ring__circle" stroke="#FED36A" stroke-width="7" fill="transparent" r="52" cx="60" cy="60" />
+            <circle class="progress-ring__circle--progress" stroke="#2C4653" stroke-width="5" fill="transparent" r="53" cx="60" cy="60" />
+        </svg>
+
+    </div>
+
+
+</div>
+<div class="upi-form">
+    <h2>Generate UPI QR Code</h2>
+    <input type="text" id="upi-id" placeholder="Enter UPI ID">
+<br><br>
+    <input type="number" id="amount" placeholder="Enter Amount">
+<br><br>
+    <input type="text" id="note" placeholder="Enter Note">
+<br><br>
+    <button onclick="generateQRCode()">Generate QR Code</button>
+</div>
+
+               
+                    <h4>Teams</h4>
+                    
+        <div class="leaderboard-container">
+    <div id="leaderboard-list"></div> <!-- Empty container for leaderboard items -->
+</div>
+</div>
+
+                <iframe class="calendar-frame"src="https://calendar.google.com/calendar/embed?height=300&wkst=1&ctz=UTC&bgcolor=%23ffffff&showTitle=0&showPrint=0&showCalendars=0&src=cGFydGguZ290ZUBnbWFpbC5jb20&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679" style="border-width:0" width="414" height="351" frameborder="0" scrolling="n"></iframe>
+
+
+					 <script>
+
+
+
+					async function calculateAndDisplayAverageProgress() {
+  try {
+    // Fetch average progress from the server
+    const response = await fetch('/leaderboard-avg');
+    if (!response.ok) throw new Error('Failed to fetch average progress');
+
+    const data = await response.json();
+    const averageProgress = data.averageProgress || 0;
+
+    // Display the average progress percentage
+    document.getElementById('average-progress-text').innerText = `${averageProgress.toFixed(0)}%`;
+
+    // Update the visual progress circle
+    const progressCircle = document.querySelector('.progress-ring__circle--progress');
+    const circumference = 2 * Math.PI * 52; // Radius is 52
+    const offset = circumference - (averageProgress / 100) * circumference;
+    progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+    progressCircle.style.strokeDashoffset = offset;
+  } catch (error) {
+    console.error('Error calculating and displaying average progress:', error);
+  }
+}
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', calculateAndDisplayAverageProgress);
+
+
+
+
+					 // Theme toggle functionality
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        // Apply the saved theme on page load
+        document.body.classList.add(currentTheme);
+
+        themeToggleButton.addEventListener('click', () => {
+            if (document.body.classList.contains('light')) {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggleButton.classList.replace('fa-moon', 'fa-sun'); // Change icon to sun
+            } else {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeToggleButton.classList.replace('fa-sun', 'fa-moon'); // Change icon to moon
+            }
+        });
+
+        // Set the initial icon based on the saved theme
+        themeToggleButton.classList.add(currentTheme === 'light' ? 'fa-moon' : 'fa-sun');
+
+
+      // Logout functionality when clicking the logout icon
+      document.getElementById('logoutIcon').addEventListener('click', function () {
+        // Optionally, clear session or localStorage data
+        // localStorage.removeItem('userToken'); // Example if you're using localStorage
+        
+        // Redirect to the login page
+        window.location.href = 'login-page.html';
+      });
+
+
+	 async function fetchAndDisplayLeaderboard() {
+  try {
+    const response = await fetch('/leaderboard-display');
+    if (!response.ok) throw new Error('Failed to fetch leaderboard');
+    
+    const leaderboardData = await response.json();
+
+    const leaderboardList = document.getElementById('leaderboard-list');
+    leaderboardList.innerHTML = ''; // Clear previous leaderboard
+
+    leaderboardData.forEach((user, index) => {
+      const leaderItem = document.createElement('div');
+      leaderItem.classList.add('leader-item');
+
+      // Create elements for rank, name, and progress percentage
+      const rankBadge = document.createElement('div');
+      rankBadge.classList.add('rank-badge');
+      rankBadge.innerText = index + 1; // Rank based on position in sorted list
+
+      const nameSpan = document.createElement('span');
+      nameSpan.classList.add('leader-name');
+      nameSpan.innerText = user.name;
+
+      const progressBadge = document.createElement('div');
+      progressBadge.classList.add('progress-badge');
+      progressBadge.innerText = `${user.progress}%`;
+
+      // Append elements to the leaderboard item
+      leaderItem.appendChild(rankBadge);
+      leaderItem.appendChild(nameSpan);
+      leaderItem.appendChild(progressBadge);
+
+      // Append the leader item to the leaderboard list
+      leaderboardList.appendChild(leaderItem);
+    });
+  } catch (error) {
+    console.error('Error displaying leaderboard:', error);
+  }
+}
+
+
+// Call this function on page load to display the leaderboard
+document.addEventListener('DOMContentLoaded', fetchAndDisplayLeaderboard);
+
+
+
+
+
+// Fetch and display registration counts on page load
+    async function fetchRegistrationData() {
+        try {
+            const response = await fetch('/get-registrations');
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('total-registrations').value = data.totalRegistrations;
+                document.getElementById('confirmed-registrations').textContent = data.confirmedRegistrations;
+                document.getElementById('remaining-registrations').textContent = data.remainingRegistrations;
+            }
+        } catch (error) {
+            console.error("Error fetching registration data:", error);
+        }
+    }
+
+    async function updateTotalRegistrations() {
+        const totalRegistrations = document.getElementById('total-registrations').value;
+        await fetch('/update-total-registrations', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ totalRegistrations })
+        });
+        fetchRegistrationData(); // Refresh counts
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchRegistrationData);
+
+async function generateQRCode() {
+        const upiID = document.getElementById('upi-id').value;
+        const amount = document.getElementById('amount').value;
+        const note = document.getElementById('note').value;
+        const upiString = `upi://pay?pa=${upiID}&am=${amount}&tn=${note}`;
+        
+        QRCode.toDataURL(upiString, { width: 200 }, async function (err, url) {
+            if (err) {
+                console.error('Error generating QR code', err);
+                return;
+            }
+            try {
+                const response = await fetch('/save-qr-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ qrCodeDataUrl: url })
+                });
+                if (response.ok) {
+                    alert('Successfull');
+                } else {
+                    console.error('Failed to save QR code');
+                }
+            } catch (error) {
+                console.error('Error saving QR code:', error);
+            }
+        });
+    }
+
+	 
+	 </script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+</body>
+</html>

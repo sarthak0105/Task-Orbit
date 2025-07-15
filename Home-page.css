@@ -1,0 +1,356 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+.sidebar {
+    width: 150px;
+    background-color: #0A0F1D;
+    color: white;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 1050px;
+    
+}
+.logo {
+    position: absolute;
+    height: auto;
+    left: -30px;
+    width: 200px;
+
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 30px;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+    transform: translateY(200px);
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 60px;
+    margin-left: 15px;
+    margin-top: 20px;
+    font-family: Kosugi Maru;
+}
+.material-symbols-outlined{
+    font-size: 7px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+	 transform:translateY(5px);
+}
+#a{
+    transform:translate(17px,-32px);
+	 font-size:20px;
+}
+.search-bar::placeholder{
+    margin-left:300px;
+    font-size: medium;
+	 width:300px;
+}
+
+.main-content {
+    flex: 1;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 5px rgba(158, 157, 157, 0.807);
+	 height:1050px;
+	 border-radius:0px 20px 20px 0px;
+    width:600px;
+}
+
+.welcome h2{
+    transform:translateY(70px);
+
+}
+
+.welcome p{
+    transform:translateY(70px);
+	 overflow-wrap: break-word;
+	 width:450px;
+
+}
+
+.search-bar {
+    display: flex;
+	 height:2px;
+    width: 320px;
+    padding: 20px;
+    border-radius: 18px;
+    border: 1px solid #0b0000;
+    margin-left: 20px;
+	 
+}
+
+
+.header{
+    margin-top:20px;
+}
+
+.dashboard {
+    padding: 20px;    
+}
+
+.welcome {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    font-family: Adamina;
+    height:100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.TeamP{
+    font-family: Adamina;
+	 font-size:18px;
+	 transform:translate(-30px,70px);
+}
+
+.media-section {
+    display: flex;
+    justify-content: space-between;
+    font-family: Kosugi Maru;
+    
+}
+
+.media-card {
+    flex: 1;
+    margin: 0 5px;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    height: 130px; /* This ensures the height and width are the same */
+    width: 80px; /* Set the width to the same value as height for a square */
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Inter;
+	 margin-bottom:10px;
+	 
+}
+
+
+.video-card {
+    background-color: #FF4C4C;
+    
+}
+
+.photos-card {
+    background-color: #4C6EFF;
+}
+
+.documents-card {
+    background-color: #FFCC4C;
+}
+
+.media-icons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.media-icon {
+    width: 25px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.event-location {
+    margin-top: 20px;
+    height: 5px;
+    font-family: Kosugi Maru;
+    font-size: 18px;
+	 
+}
+
+
+.right-panel {
+    width: 300px;
+    
+    background-color: #F4F4F4;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    transform: translateY(-35px);
+}
+
+.top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+    margin-right: 26px;
+    transform: translate(-30px,35px);
+}
+
+.top-right-icons a {
+    color: rgb(10, 15, 29);
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.top-right-icons a:hover {
+    color: #d8dadc;
+}
+
+.calendar {
+    background-color: white;
+    border-radius: 5%;
+    margin-top: 85px;
+    box-shadow: 0 2px 5px rgba(158, 157, 157, 0.807);
+    width: 300px;
+	  height:300px;
+    
+	 transform:translate(-30px,-20px);
+    
+}
+
+.progress-content {
+   
+    background-color: white;
+    padding: 40px;
+    border-radius: 5%;
+    margin-bottom: 200px;
+    box-shadow: 0 2px 5px rgba(158, 157, 157, 0.807);
+    font-family: Kosugi Maru;
+	 transform:translate(-30px,70px);
+}
+
+
+#progress-description{
+   margin-left:6px;
+	margin-bottom:60px;
+	margin-top:-15px;
+	font-size:20px;
+}
+
+#progressCanvas{
+    margin-left:50px;
+	 height:120px;
+	 width:120px;
+    color:red;
+}
+
+
+.calendar-header {
+    display: flex;
+    transform:translate(-30px,70px);
+    font-size:18px;
+	 font-family:Kosugi;
+	 
+}
+
+.calendar-body {
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+
+.performance-chart {
+    margin-top: 20px;
+    background-color: #333;
+    height: 100px;
+    border-radius: 10px;
+}
+
+
+.progress-content {
+    position: relative
+}
+
+
+/* Add to your Home-page.css */
+
+
+body.dark {
+    background-color: #181818;
+    color: #e0e0e0;
+}
+
+body.dark .sidebar {
+    background-color: #0A0F1D;
+}
+
+body.dark .main-content {
+    background-color: #282828;
+    color: #e0e0e0;
+}
+
+body.dark .welcome {
+    background-color: #333;
+    color: white;
+}
+
+
+body.dark .search-bar {
+    background-color: #444;
+    color: white;
+}
+
+
+
+body.dark .right-panel {
+    background-color: #181818;
+}
+
+
+body.dark .calendar, body.dark .progress-content {
+    background-color: #333;
+    color: white;
+}
+
+body.dark .top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+    margin-right: 26px;
+    transform: translate(-30px,35px);
+}
+
+body.dark .top-right-icons a {
+    color: #d8dadc;
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+body.dark .top-right-icons a:hover {
+    color: #FFFFFF;
+}

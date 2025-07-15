@@ -1,0 +1,226 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    height: 100vh;
+	 overflow-x:hidden;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 150px;
+    background-color: #0A0F1D;
+    color: white;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+	 min-height:200%;
+}
+.logo {
+    position: absolute;
+    height: auto;
+    left: -30px;
+    width: 200px;
+
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 300px;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+    transform: translateY(200px);
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 60px;
+    margin-left: 15px;
+    margin-top: 20px;
+    
+    font-family: Kosugi Maru;
+}
+.team-icon{
+    color:#e0e0e0;
+   
+}
+.material-symbols-outlined{
+    font-size: 7px; 
+}
+
+#a{
+    font-size: 27px;
+     
+    
+}
+.top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+    margin-right: 55px;
+}
+
+.top-right-icons a {
+    color: rgb(10, 15, 29);
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.top-right-icons a:hover {
+    color: #d8dadc;
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 100px;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 70px;
+    text-align: center;
+	 margin-left:-50px;
+    width: 200px;
+    height: 200px;
+    transform: translateY(100px);
+  }
+  
+  .icon-wrapper {
+    background-color: #0a192f;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+  }
+  
+  .icon {
+    font-size: 24px;
+    color: white;
+  }
+  
+  .card h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    transform: translateY(-93px);
+    font-family: kosugi;
+
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  button {
+    background-color: #00e676;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top:15px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    
+  }
+  
+  button:hover {
+    background-color: #00c853;
+  }
+  .team-item {
+    display: flex;
+    align-items: center;
+    padding: 22px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.team-item:last-child {
+    border-bottom: none;
+}
+
+.team-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #0a0a24;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -50px;
+    transform: translateY(-30px);
+    
+
+}
+
+.team-icon img {
+    width: 20px;
+    height: 20px;
+    filter: invert(100%); /* Inverts the color to make icons white */
+}
+
+
+
+body.dark{
+    background-color: #181818;
+    color: #e0e0e0;
+}
+
+body.dark .card{
+    background-color: #282828;
+    color: white;
+}
+
+
+
+body.dark .top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+    margin-right: 55px;
+}
+
+body.dark .top-right-icons a {
+    color: #d8dadc;
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+body.dark .top-right-icons a:hover {
+    color: #FFFFFF;
+}
+
+
+
+

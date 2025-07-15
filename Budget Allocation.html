@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Budget Allocation.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Budget Allocation</title>
+</head>
+<body>
+    <div class="container">
+            
+        <aside class="sidebar">
+            
+            <div class="logo"></div>
+            <img src="public/whatsapp-image-20240818-at-83859-amremovebgpreview-2@2x.png" alt="logo" class="logo">
+            <nav>
+                <ul>
+                <li><span class="material-symbols-outlined">home</span><a href="Admin.html">Home</a></li>
+                    <li><span class="material-symbols-outlined">task_alt</span><a href="task_allocation.html">Tasks</a></li>        
+                    <li><span class="material-symbols-outlined">monitoring</span><a href="progress page.html">Performace</a></li>
+						  <li><span class="material-symbols-outlined">assured_workload</span><a href="Budget Allocation.html">Budget</a></li>
+                    <li><span class="material-symbols-outlined">person_add</span><a href="Add_User.html">Add User</a></li>
+                    <li><span class="material-symbols-outlined">info</span><a href="About_Us_admin.html">About us</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+          <div class="right-column">
+            <div class="top-right-icons">
+                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#"><i class="fas fa-cog"></i></a>
+                <a href="#"><i class="fas fa-right-from-bracket" id="logoutIcon"></i></a>
+                <a href="#"><i id="theme-toggle" class="fas fa-moon" class="fas fa-moon"></i></a>
+            </div>
+            
+        <div class="container">
+            <!-- Card 1 -->
+            <div class="card">
+  <div class="team-icon">
+      <span id="a" class="material-symbols-outlined">app_registration </span>     
+  </div>  
+  <h3>Registrations</h3>
+  <input type="number" id="Registrations-budget" placeholder="Enter amount">
+  <button onclick="allocateBudget('Registrations')">Allocate</button>
+</div>
+
+          <!-- Card 2 -->
+<div class="card">
+  <div class="team-icon">
+      <span id="a" class="material-symbols-outlined">perm_media</span>
+  </div>
+  <h3>Media Content & Blog</h3>
+  <input type="number" id="Media-budget" placeholder="Enter amount">
+  <button onclick="allocateBudget('Media')">Allocate</button>
+</div>
+        
+            <!-- Card 3 -->
+<div class="card">
+  <div class="team-icon">
+      <span id="a" class="material-symbols-outlined">currency_rupee_circle</span>
+  </div>
+  <h3>Sponsorship</h3>
+  <input type="number" id="Sponsorship-budget" placeholder="Enter amount">
+  <button onclick="allocateBudget('Sponsorship')">Allocate</button>
+</div>
+
+
+        
+            <!-- Card 4 -->
+
+<div class="card">
+  <div class="team-icon">
+      <span id="a" class="material-symbols-outlined">local_shipping</span>
+  </div>
+  <h3>Logistics</h3>
+  <input class="input" type="number" id="Logistics-budget" placeholder="Enter amount">
+  <button onclick="allocateBudget('Logistics')">Allocate</button>
+</div>
+
+
+            <!-- Card 5 -->
+<div class="card">
+  <div class="team-icon">
+      <span id="a" class="material-symbols-outlined">dvr</span>
+  </div>
+  <h3>Technical</h3>
+  <input class="input" type="number" id="Technical-budget" placeholder="Enter amount">
+  <button onclick="allocateBudget('Technical')">Allocate</button>
+</div>
+
+
+        
+            <!-- Card 6 -->
+<div class="card">
+  <div class="team-icon">
+      <span class="material-symbols-outlined">groups</span>
+  </div>
+  <h3>Campaigning</h3>
+  <input class="input" type="number" id="Campaigning-budget" placeholder="Enter amount">
+  <button onclick="allocateBudget('Campaigning')">Allocate</button>
+</div>
+
+<script>
+
+
+
+async function allocateBudget(team) {
+  const amount = document.getElementById(`${team}-budget`).value;
+
+  fetch('/allocate-budget', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ team, amount }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert('Budget allocated successfully');
+    } else {
+      alert('Failed to allocate budget');
+    }
+  })
+  .catch(error => console.error('Error:', error));
+}
+
+
+	 // Theme toggle functionality
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        // Apply the saved theme on page load
+        document.body.classList.add(currentTheme);
+
+        themeToggleButton.addEventListener('click', () => {
+            if (document.body.classList.contains('light')) {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggleButton.classList.replace('fa-moon', 'fa-sun'); // Change icon to sun
+            } else {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeToggleButton.classList.replace('fa-sun', 'fa-moon'); // Change icon to moon
+            }
+        });
+
+        // Set the initial icon based on the saved theme
+        themeToggleButton.classList.add(currentTheme === 'light' ? 'fa-moon' : 'fa-sun');
+
+
+      // Logout functionality when clicking the logout icon
+      document.getElementById('logoutIcon').addEventListener('click', function () {
+        // Optionally, clear session or localStorage data
+        // localStorage.removeItem('userToken'); // Example if you're using localStorage
+        
+        // Redirect to the login page
+        window.location.href = 'login-page.html';
+      });
+</script>
+    
+</body>
+</html>

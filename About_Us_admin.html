@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <link rel="stylesheet" href="About_Us.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="circle-logo">
+        <img src="public/whatsapp-image-20240818-at-83859-amremovebgpreview-2@2x.png" alt="Logo">
+      </div>
+      <nav>
+        <ul>
+                    <li><span class="material-symbols-outlined">home</span><a href="Admin.html">Home</a></li>
+                    <li><span class="material-symbols-outlined">task_alt</span><a href="task_allocation.html">Tasks</a></li>        
+                    <li><span class="material-symbols-outlined">monitoring</span><a href="progress page.html">Performace</a></li>
+						  <li><span class="material-symbols-outlined">assured_workload</span><a href="Budget Allocation.html">Budget</a></li>
+                    <li><span class="material-symbols-outlined">person_add</span><a href="Add_User.html">Add User</a></li>
+                    <li><span class="material-symbols-outlined">info</span><a href="About_Us_admin.html">About us</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section class="logo-animation">
+		<div class="top-right-icons">
+                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#"><i class="fas fa-cog"></i></a>
+                <a href="#"><i class="fas fa-right-from-bracket" id="logoutIcon"></i></a>
+                <a href="#"><i id="theme-toggle" class="fas fa-moon" class="fas fa-moon"></i></a>
+            </div>
+        <video autoplay loop muted class="large-video">
+          <source src="public/Amimation.mp4" type="video/mp4">
+        </video>
+      </section>
+
+      <section id="about-us" class="about-section hidden-section">
+        <div class="animation-left">
+          <video autoplay muted loop>
+            <source src="public/Bouncing-period-[remix].mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="about-text-container">
+          <div class="about-text">
+            <h2>About Us</h2>
+            <h1>We are TaskOrbit, a company dedicated to providing seamless task and finance management solutions.</h1>
+            <p>Our app offers:</p>
+            <ul>
+              <li>Task Management: Break down projects into actionable tasks, assign them to your team, set deadlines, and monitor progress effortlessly.</li>
+              <li>Team Collaboration: Stay connected with team members through shared workspaces, real-time updates, and communication features.</li>
+              <li>Project Tracking: Keep your projects on track with visual timelines, progress reports, and notifications to ensure nothing falls through the cracks.</li>
+              <li>Finance Management: Track your budget, invoices, and financial milestones to keep your business healthy and sustainable.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+     <section id="properties" class="properties-section">
+
+  <div class="properties-text-container">
+    <div class="properties-text">
+      <h1>Our Services</h1>
+      <p>We offer a variety of services to enhance your workflow and financial management:</p>
+
+      <div class="bullet-grid">
+        <ul class="bullet-column">
+          <li class="service-item">Cloud-Based Storage: Store all your files in a secure, cloud-based system accessible from anywhere.</li>
+          <li class="service-item">Data Analytics: Gain insights into your team’s performance with detailed analytics and reporting tools.</li>
+          <li class="service-item">Automated Reminders: Never miss a deadline with automatic reminders and notifications.</li>
+          <li class="service-item">Customizable Dashboards: Tailor your dashboard to display the metrics most important to you.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="animation-right">
+    <video autoplay muted loop>
+      <source src="public/Animated-Donut-Chart-[remix].mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+
+      <section id="team" class="team-section hidden-section">
+        <h2>Meet the Team</h2>
+        <div class="team">
+          <div class="team-member">
+            <img src="public/team-member1.jpg" alt="Parth Gote">
+            <h3>Parth Gote</h3>
+            <p>CEO</p>
+          </div>
+          <div class="team-member">
+            <img src="public/team-member2.jpg" alt="Sujal Oswal">
+            <h3>Sujal Oswal</h3>
+            <p>Designer</p>
+          </div>
+          <div class="team-member">
+            <img src="public/team-member4.jpg" alt="Sarthak Bhandari">
+            <h3>Sarthak Bhandari</h3>
+            <p>Web Developer</p>
+          </div>
+          <div class="team-member">
+            <img src="public/team-member3.jpg" alt="Atharva Sarwade">
+            <h3>Atharva Sarwade</h3>
+            <p>Full Stack Developer</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact-us" class="contact-section hidden-section">
+        <h2>Contact Us</h2>
+        <p>Email us at <a href="mailto:info@taskorbit.com">info@taskorbit.com</a></p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+   // Theme toggle functionality
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        // Apply the saved theme on page load
+        document.body.classList.add(currentTheme);
+
+        themeToggleButton.addEventListener('click', () => {
+            if (document.body.classList.contains('light')) {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggleButton.classList.replace('fa-moon', 'fa-sun'); // Change icon to sun
+            } else {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeToggleButton.classList.replace('fa-sun', 'fa-moon'); // Change icon to moon
+            }
+        });
+
+		  // Logout functionality when clicking the logout icon
+      document.getElementById('logoutIcon').addEventListener('click', function () {
+        // Optionally, clear session or localStorage data
+        // localStorage.removeItem('userToken'); // Example if you're using localStorage
+        
+        // Redirect to the login page
+        window.location.href = 'login-page.html';
+      });
+  </script>
+
+  <script src="About_Us.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .payment-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #00a884;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .qr-code {
+            max-width: 200px;
+            margin: 0 auto 20px;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: auto;
+        }
+
+        .done {
+            color: #00a884;
+            font-weight: bold;
+            font-size: 18px;
+				background:none;
+			   border:none;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Scan QR Code to Pay</h1>
+        <div class="qr-code">
+    <img id="generated-qr" src="" alt="Generated UPI QR Code">
+</div>
+        
+
+		  <button class="done" onclick="window.location.href='Guest_Landing_page.html'">Done</button>
+    </div>
+<script>
+
+document.addEventListener('DOMContentLoaded', async function () {
+        try {
+            const response = await fetch('/get-qr-code');
+            const data = await response.json();
+            if (data && data.qrImg) {
+                document.getElementById('generated-qr').src = data.qrImg;
+            }
+        } catch (error) {
+            console.error('Error fetching QR code:', error);
+        }
+    });
+
+</script>
+</body>
+</html>

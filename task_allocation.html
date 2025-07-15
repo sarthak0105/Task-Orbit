@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="task_allocation.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Task Allocation</title>
+	 <style>
+        .task-text {
+            padding: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .task-text:hover {
+            background-color: #f5f5f5;
+        }
+
+        .task-text.editing {
+            border: 1px solid #007bff;
+            outline: none;
+            padding: 4px;
+            background-color: white;
+        }
+
+        /* Dark mode support */
+        body.dark .task-text:hover {
+            background-color: #383838;
+        }
+
+        body.dark .task-text.editing {
+            background-color: #383838;
+            border-color: #4a9eff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    
+        <div class="container">
+            
+             <aside class="sidebar">
+            
+            <div class="logo"></div>
+            <img alt="logo" src="public/whatsapp-image-20240818-at-83859-amremovebgpreview-2@2x.png" class="logo">
+            <nav>
+                <ul>
+                    <li><span class="material-symbols-outlined">home</span><a href="Admin.html">Home</a></li>
+                    <li><span class="material-symbols-outlined">task_alt</span><a href="task_allocation.html">Tasks</a></li>        
+                    <li><span class="material-symbols-outlined">monitoring</span><a href="progress page.html">Performace</a></li>
+						  <li><span class="material-symbols-outlined">assured_workload</span><a href="Budget Allocation.html">Budget</a></li>
+                    <li><span class="material-symbols-outlined">person_add</span><a href="Add_User.html">Add User</a></li>
+                    <li><span class="material-symbols-outlined">info</span><a href="About_Us_admin.html">About us</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+            <div class="right-column">
+                <div class="top-right-icons">
+                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#"><i class="fas fa-cog"></i></a>
+                <a href="#"><i class="fas fa-right-from-bracket" id="logoutIcon"></i></a>
+                <a href="#"><i id="theme-toggle" class="fas fa-moon" class="fas fa-moon"></i></a>
+            </div>
+
+
+                <div class="task-list">
+                <h2>Tasks</h2>
+                <div class="task-item">
+                    <span class="task-text" contenteditable="true" data-task-id="1">Daily 10 Registrations</span>
+                    <button class="assign-btn">Assign to all</button>
+                </div>
+                <div class="task-item">
+                    <span class="task-text" contenteditable="true" data-task-id="2">Submit Daily Report</span>
+                    <button class="assign-btn">Assign to all</button>
+                </div>
+                <div class="task-item">
+                    <span class="task-text" contenteditable="true" data-task-id="3">Campus Campaigning</span>
+                    <button class="assign-btn">Assign to all</button>
+                </div>
+                <div class="task-item">
+                    <span class="task-text" contenteditable="true" data-task-id="4">TASK 4</span>
+                    <button class="assign-btn">Assign to all</button>
+                </div>
+                <div class="task-item">
+                    <span class="task-text" contenteditable="true" data-task-id="5">TASK 5</span>
+                    <button class="assign-btn">Assign to all</button>
+                </div>
+                <div class="task-item">
+                    <span class="task-text" contenteditable="true" data-task-id="6">TASK 6</span>
+                    <button class="assign-btn">Assign to all</button>
+                </div>
+
+<div class="announcement-form">
+    <h2>Create Announcement</h2>
+    <textarea id="announcement-input" placeholder="Enter announcement details..."></textarea>
+    <button id="submit-announcement">Post Announcement</button>
+</div>
+            </div>
+
+
+
+<div class="progress-card">
+    <h3>Total Progress</h3>
+    <div class="progress-circle">
+        <span class="progress-text" id="average-progress-text">0%</span>
+        <svg class="progress-ring" width="120" height="120">
+            <circle class="progress-ring__circle" stroke="#FED36A" stroke-width="7" fill="transparent" r="52" cx="60" cy="60" />
+            <circle class="progress-ring__circle--progress" stroke="#2C4653" stroke-width="5" fill="transparent" r="53" cx="60" cy="60" />
+        </svg>
+    </div>
+</div>
+    <h4>Leaderboard</h4>
+<div class="leaderboard-container">
+    <div id="leaderboard-list"></div> <!-- Empty container for leaderboard items -->
+</div>
+</div>
+</div>
+<script>
+
+
+
+
+
+
+// Add this to your existing CSS file
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                .task-text {
+                    padding: 5px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    flex-grow: 1;
+                    margin-right: 10px;
+                }
+                .task-text:hover {
+                    background-color: #f5f5f5;
+                }
+                .task-text.editing {
+                    border: 1px solid #007bff;
+                    outline: none;
+                    padding: 4px;
+                }
+                body.dark .task-text:hover {
+                    background-color: #383838;
+                }
+                body.dark .task-text.editing {
+                    background-color: #383838;
+                    border-color: #4a9eff;
+                    color: white;
+                }
+            </style>
+        `);
+
+        // Load saved task names when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.task-text').forEach(taskElement => {
+                const taskId = taskElement.dataset.taskId;
+                const savedText = localStorage.getItem(`task_${taskId}`);
+                if (savedText) {
+                    taskElement.textContent = savedText;
+                }
+            });
+        });
+
+
+// Add event listeners to all task text elements
+        document.querySelectorAll('.task-text').forEach(taskElement => {
+            // Save changes when user finishes editing
+            taskElement.addEventListener('blur', function() {
+                const taskId = this.dataset.taskId;
+                const newText = this.textContent;
+                localStorage.setItem(`task_${taskId}`, newText);
+                this.classList.remove('editing');
+            });
+
+            // Add editing class when focused
+            taskElement.addEventListener('focus', function() {
+                this.classList.add('editing');
+            });
+
+            // Handle Enter key
+            taskElement.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.blur();
+                }
+            });
+        });
+
+
+
+
+// Make task text editable and handle the editing
+        document.querySelectorAll('.task-text').forEach(taskText => {
+            // Add focus and blur event listeners
+            taskText.addEventListener('focus', function() {
+                this.classList.add('editing');
+            });
+
+            taskText.addEventListener('blur', function() {
+                this.classList.remove('editing');
+                // Here you can add code to save the updated task text
+                saveTaskUpdate(this);
+            });
+
+            // Prevent Enter key from creating new lines
+            taskText.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.blur();
+                }
+            });
+        });
+
+        // Function to save task updates
+        async function saveTaskUpdate(taskElement) {
+            const newTaskText = taskElement.textContent;
+            try {
+                const response = await fetch('/update-task', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        taskText: newTaskText,
+                        taskId: taskElement.dataset.taskId // You'll need to add data-task-id attributes to your task elements
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to update task');
+                }
+
+                // Optional: Show success message
+                console.log('Task updated successfully');
+            } catch (error) {
+                console.error('Error updating task:', error);
+                // Optional: Show error message to user
+            }
+        }
+
+
+
+
+
+
+
+
+// Add this to task_allocation.html inside your script tag
+document.querySelectorAll('.assign-btn').forEach(button => {
+    button.addEventListener('click', async function() {
+        // Get the task text from the adjacent span
+        const taskText = this.previousElementSibling.textContent;
+        
+        try {
+            const response = await fetch('/assign-task', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ taskText })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                alert(`Task "${taskText}" has been assigned to all users`);
+            } else {
+                alert('Error assigning task');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error assigning task');
+        }
+    });
+});
+
+
+
+document.getElementById('submit-announcement').addEventListener('click', async () => {
+        const announcement = document.getElementById('announcement-input').value;
+        if (announcement) {
+            try {
+                const response = await fetch('/post-announcement', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ announcement })
+                });
+                if (response.ok) {
+                    alert('Announcement posted successfully');
+                } else {
+                    alert('Failed to post announcement');
+                }
+            } catch (error) {
+                console.error('Error posting announcement:', error);
+            }
+        }
+    });
+
+
+
+
+
+
+ async function calculateAndDisplayAverageProgress() {
+  try {
+    // Fetch average progress from the server
+    const response = await fetch('/leaderboard-avg');
+    if (!response.ok) throw new Error('Failed to fetch average progress');
+
+    const data = await response.json();
+    const averageProgress = data.averageProgress || 0;
+
+    // Display the average progress percentage
+    document.getElementById('average-progress-text').innerText = `${averageProgress.toFixed(0)}%`;
+
+    // Update the visual progress circle
+    const progressCircle = document.querySelector('.progress-ring__circle--progress');
+    const circumference = 2 * Math.PI * 52; // Radius is 52
+    const offset = circumference - (averageProgress / 100) * circumference;
+    progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+    progressCircle.style.strokeDashoffset = offset;
+  } catch (error) {
+    console.error('Error calculating and displaying average progress:', error);
+  }
+}
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', calculateAndDisplayAverageProgress);
+
+
+// Theme toggle functionality
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        // Apply the saved theme on page load
+        document.body.classList.add(currentTheme);
+
+        themeToggleButton.addEventListener('click', () => {
+            if (document.body.classList.contains('light')) {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggleButton.classList.replace('fa-moon', 'fa-sun'); // Change icon to sun
+            } else {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeToggleButton.classList.replace('fa-sun', 'fa-moon'); // Change icon to moon
+            }
+        });
+
+        // Set the initial icon based on the saved theme
+        themeToggleButton.classList.add(currentTheme === 'light' ? 'fa-moon' : 'fa-sun');
+
+
+      // Logout functionality when clicking the logout icon
+      document.getElementById('logoutIcon').addEventListener('click', function () {
+        // Optionally, clear session or localStorage data
+        // localStorage.removeItem('userToken'); // Example if you're using localStorage
+        
+        // Redirect to the login page
+        window.location.href = 'login-page.html';
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function fetchAndDisplayLeaderboard() {
+  try {
+    const response = await fetch('/leaderboard-display');
+    if (!response.ok) throw new Error('Failed to fetch leaderboard');
+    
+    const leaderboardData = await response.json();
+
+    const leaderboardList = document.getElementById('leaderboard-list');
+    leaderboardList.innerHTML = ''; // Clear previous leaderboard
+
+    leaderboardData.forEach((user, index) => {
+      const leaderItem = document.createElement('div');
+      leaderItem.classList.add('leader-item');
+
+      // Create elements for rank, name, and progress percentage
+      const rankBadge = document.createElement('div');
+      rankBadge.classList.add('rank-badge');
+      rankBadge.innerText = index + 1; // Rank based on position in sorted list
+
+      const nameSpan = document.createElement('span');
+      nameSpan.classList.add('leader-name');
+      nameSpan.innerText = user.name;
+
+      const progressBadge = document.createElement('div');
+      progressBadge.classList.add('progress-badge');
+      progressBadge.innerText = `${user.progress}%`;
+
+      // Append elements to the leaderboard item
+      leaderItem.appendChild(rankBadge);
+      leaderItem.appendChild(nameSpan);
+      leaderItem.appendChild(progressBadge);
+
+      // Append the leader item to the leaderboard list
+      leaderboardList.appendChild(leaderItem);
+    });
+  } catch (error) {
+    console.error('Error displaying leaderboard:', error);
+  }
+}
+
+// Call this function on page load to display the leaderboard
+document.addEventListener('DOMContentLoaded', fetchAndDisplayLeaderboard);
+ 
+</script>
+    
+</body>
+</html>

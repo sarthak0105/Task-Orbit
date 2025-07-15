@@ -1,0 +1,364 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    overflow-x:hidden;
+	 overflow-y:scroll;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 150px;
+    background-color: #0A0F1D;
+    color: white;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+	 min-height:250%;
+}
+
+
+
+.logo {
+    position: absolute;
+    height: auto;
+    left: -30px;
+ 
+    width: 200px;
+
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 300px;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+    transform: translateY(200px);
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 60px;
+    margin-left: 15px;
+    margin-top: 20px;
+    
+    font-family: Kosugi Maru;
+}
+.team-icon{
+    color:#e0e0e0;
+   
+}
+
+.material-symbols-outlined{
+    font-size: 7px;
+    margin-left : 5px;
+    margin-bottom: 10px;
+	 transform: translateY(5px);
+}
+.top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+    margin-right: 26px;
+}
+
+.top-right-icons a {
+    color: rgb(10, 15, 29);
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.top-right-icons a:hover {
+    color: #d8dadc;
+}
+
+
+
+.card {
+    position: relative;
+    top: 90px;
+    left: 50px;
+    width: 553px;
+    height: 305px; /* Adjusted for a better size */
+    padding: 20px;
+    background-color: #FFFFFF; /* Light grey background similar to the image */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    text-align: left; /* Text alignment as per the image */
+    border: 1px solid #ddd; /* Subtle border */
+	 font-size:21px;
+}
+
+.card h2 {
+    font-size: 38px; /* Smaller heading similar to the image */
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 10px;
+    font-family: Kosugi     
+}
+
+.card .icon {
+    font-size: 39px;
+    color: #b0b0b0;
+    text-align: right;
+    transform: translateY(-55px);
+    
+   
+}
+
+
+.leader-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 21px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    transform: translateY(10px);
+    font-family: Kosugi Maru;
+}
+
+.leader-item:last-child {
+    border-bottom: none;
+}
+
+.rank-badge {
+    width: 30px;
+    height: 30px;
+    background-color: #FFD700; /* Gold color */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+.leaderboard-container {
+    background-color: white;
+    /* padding: 13px; */
+    border-radius: 10px;
+	 margin-left:40px;
+	 transform:translateY(-315px);
+    width: 630px;
+    height: 630px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	 overflow-Y:scroll;
+	 }
+
+.leader-name {
+    font-size: 18px;
+    font-family: 'Kosugi Maru', sans-serif;
+    color: #333;
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.registrations {
+    font-size: 55px; /* Large font for the number */
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    text-align: left; /* Aligning number as per the image */
+    margin-left: 20px;
+    font-family: Kosugi Maru;
+
+}
+
+.progress-card {
+    background-color: white;
+    position: relative;
+    padding: 60px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    transform: translateX(780px);
+    bottom: -255px;
+    right: 10px;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    position: absolute;
+    left: 20px;
+    top: 2px;
+    font-family: Kosugi Maru;  
+}
+
+h4{
+    font-size: 24px;
+    color: #333;
+    position: absolute;
+    left: 200px;
+    top: 530px;
+    font-family: Kosugi Maru;
+}
+
+
+.progress-circle {
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    margin-top: 20px;
+}
+
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+.progress-ring__circle {
+    stroke-dasharray: 326; /* 2 * π * radius (52) */
+    stroke-dashoffset: 0;
+}
+
+.progress-ring__circle--progress {
+    stroke-dasharray: 326;
+    stroke-dashoffset: 81.5; /* 75% of the circumference */
+    stroke-linecap: round;
+}
+
+.progress-text {
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #333;
+}
+
+
+.calendar-frame {
+    position: absolute;
+    margin-left:920px;
+	 margin-top:90px;
+    width: 414px;
+    height: 351px;
+    border-radius: 10px;
+	 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.upi-form{
+    transform:translate(780px,300px);
+}
+
+.upi-form input{
+    outline:none;
+    border:none;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.upi-form button{
+    outline:none;
+    border:none;
+    padding:15px; 
+    border-radius:10px;
+    cursor:pointer;
+    color:white;
+    background-color: #0A0F1D;
+}
+
+.card input{
+    outline:none;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+	 font-size:21px;
+}
+
+
+body.dark {
+    background-color: #181818;
+    color: #e0e0e0;
+}
+
+
+body.dark h4{
+ color:white;
+}
+
+body.dark h3{
+ color:white;
+}
+
+body.dark h2{
+ color:white;
+}
+
+body.dark .leaderboard-container {
+    background-color: #282828;
+    color: white;
+	 }
+
+
+body.dark .leader-name {
+    color:white;
+}
+
+
+
+body.dark .progress-text {
+    color: white;
+}
+
+
+body.dark .progress-card{
+    background-color: #282828;
+    color: white;
+}
+
+
+body.dark .card{
+    background-color: #282828;
+    color: white;
+}
+
+
+
+
+body.dark .top-right-icons {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 43px;
+    margin-right: 26px;
+}
+
+body.dark .top-right-icons a {
+    color: #d8dadc;
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+body.dark .top-right-icons a:hover {
+    color: #FFFFFF;
+}

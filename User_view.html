@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskOrbit Profile</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+    <link rel="stylesheet" href="user_view.css">
+
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            
+            <div class="logo"></div>
+            <img src="public/whatsapp-image-20240818-at-83859-amremovebgpreview-2@2x.png" alt="logo" class="logo">
+            <nav>
+                <ul>
+                    <li><span class="material-symbols-outlined">home</span><a href="Admin.html">Home</a></li>
+                    <li><span class="material-symbols-outlined">task_alt</span><a href="task_allocation.html">Tasks</a></li>        
+                    <li><span class="material-symbols-outlined">monitoring</span><a href="progress page.html">Performace</a></li>
+						  <li><span class="material-symbols-outlined">assured_workload</span><a href="Budget Allocation.html">Budget</a></li>
+                    <li><span class="material-symbols-outlined">person_add</span><a href="Add_User.html">Add User</a></li>
+                    <li><span class="material-symbols-outlined">info</span><a href="About_Us_admin.html">About us</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Profile Section -->
+                <p class="container-heading" id="Pper">Profile</p>
+                <section class="profile">
+                    <div class="profile-info">
+                         <div class="avatar" id="avatarContainer">
+            <img id="avatarImage" src="public/default-avatar.png" alt="Profile Avatar">
+        </div>
+        
+        
+   
+        <!-- Hidden file input for image selection -->
+		  
+                        <div class="user-details">
+                            <h3 id="user-name"></h3>
+                            <p>Student At KIT CoEK</p>
+                            <p>Volunteer</p>
+                  
+									 <p id="grade"></p>
+									 <p id="progress"></p>
+                        </div>
+                    </div>
+                </section>
+
+<!-- Message Section -->
+<div class="message-container">
+  <h3>Post a Message for User</h3>
+  <textarea id="messageInput" placeholder="Enter message here..."></textarea>
+  <button onclick="postMessage()">Post Message</button>
+</div>
+<div class="sent-messages-container">
+  <!-- Sent Messages Display -->
+  <h4>Sent Messages</h4>
+  <ul id="sentMessagesList"></ul> <!-- New section for displaying sent messages -->
+</div>
+
+
+
+
+
+            </div>
+
+            <!-- Right Column for Upcoming Tasks -->
+            <div class="right-column">
+                <div class="top-right-icons">
+                    <a href="#"><i class="fas fa-bell"></i></a>
+                    <a href="#"><i class="fas fa-cog"></i></a>
+                    <a href="#"><i class="fas fa-right-from-bracket" id="logoutIcon"></i></a>
+                    <a href="#"><i id="theme-toggle" class="fas fa-moon" class="fas fa-moon"></i></a>
+                </div>
+
+
+                <!-- Upcoming Tasks Section -->
+                <p class="container-heading" id="UT">Upcoming Tasks</p>
+                <section class="task-list">
+                    
+                    <ul id="task-list">
+                        
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script> 
+      
+
+
+
+
+
+
+
+async function postMessage() {
+  const messageText = document.getElementById('messageInput').value;
+  const username = document.getElementById('user-name').textContent.trim(); // Get the username from <h3 id="user-name">
+
+  if (!messageText || !username) {
+    return alert('Please ensure there is a username and a message');
+  }
+
+  try {
+    const response = await fetch('/post-message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: messageText, username }),
+    });
+
+    if (response.ok) {
+      alert('Message posted successfully!');
+      document.getElementById('messageInput').value = ''; // Clear message input
+
+      // Display the sent message on the page
+      const sentMessagesList = document.getElementById('sentMessagesList');
+      const listItem = document.createElement('li');
+      listItem.textContent = `${messageText} - ${new Date().toLocaleString()}`;
+      sentMessagesList.appendChild(listItem);
+    } else {
+      throw new Error('Failed to post message');
+    }
+  } catch (error) {
+    console.error('Error posting message:', error);
+  }
+}
+
+
+async function loadSentMessages() {
+  const username = document.getElementById('user-name').textContent.trim(); // Get the username from <h3 id="user-name">
+
+  if (!username) {
+    console.error('Username is missing');
+    return;
+  }
+
+  try {
+    const response = await fetch(`/get-messages?username=${encodeURIComponent(username)}`);
+    const data = await response.json();
+
+    const sentMessagesList = document.getElementById('sentMessagesList');
+    sentMessagesList.innerHTML = ''; // Clear previous messages
+
+    data.messages.forEach(message => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${message.text} - ${new Date(message.time).toLocaleString()}`;
+      sentMessagesList.appendChild(listItem);
+    });
+  } catch (error) {
+    console.error('Error loading sent messages:', error);
+  }
+}
+
+// Load sent messages on page load
+document.addEventListener('DOMContentLoaded', loadSentMessages);
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', async function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const username = urlParams.get('username');
+
+  try {
+    const response = await fetch(`/user-details?username=${encodeURIComponent(username)}`);
+    const userData = await response.json();
+
+    if (userData) {
+      // Set profile information
+      document.getElementById('user-name').textContent = userData.name;
+      document.getElementById('avatarImage').src = userData.avatar || 'public/default-avatar.png';
+      document.getElementById('grade').textContent = `Grade: ${userData.grade}`;
+      document.getElementById('progress').textContent = `Progress: ${userData.progress}%`;
+
+      // Display tasks
+      const taskList = document.getElementById('task-list');
+      taskList.innerHTML = ''; // Clear any existing tasks
+
+      userData.tasks.forEach(task => {
+        const li = document.createElement('li');
+        li.textContent = task.taskText;
+        if (task.completed) li.classList.add('completed-task');
+        taskList.appendChild(li);
+      });
+    } else {
+      console.error('User not found');
+    }
+  } catch (error) {
+    console.error('Error fetching user details:', error);
+  }
+});
+
+
+
+
+
+
+
+
+
+		  // Theme toggle functionality
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        // Apply the saved theme on page load
+        document.body.classList.add(currentTheme);
+
+        themeToggleButton.addEventListener('click', () => {
+            if (document.body.classList.contains('light')) {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggleButton.classList.replace('fa-moon', 'fa-sun'); // Change icon to sun
+            } else {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeToggleButton.classList.replace('fa-sun', 'fa-moon'); // Change icon to moon
+            }
+        });
+
+        // Set the initial icon based on the saved theme
+        themeToggleButton.classList.add(currentTheme === 'light' ? 'fa-moon' : 'fa-sun');
+
+	 // Logout functionality when clicking the logout icon
+      document.getElementById('logoutIcon').addEventListener('click', function () {
+        // Optionally, clear session or localStorage data
+        // localStorage.removeItem('userToken'); // Example if you're using localStorage
+        
+        // Redirect to the login page
+        window.location.href = 'login-page.html';
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

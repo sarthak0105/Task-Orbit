@@ -1,0 +1,197 @@
+/* General Styles (already present) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Kosugi';
+    background-color: #f4f4f4;
+    color: #333;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    display: flex;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    background-color: #0A0F1D;
+    color: white;
+    width: 150px;
+    height: 2600px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .circle-logo img {
+    width: 200px;
+    height: auto;
+    margin-left: -30px;
+  }
+  
+  .top-right-icons {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      display: flex;
+      gap: 43px;
+      margin-right: 55px;
+      z-index:1;
+  }
+  
+  .top-right-icons a {
+      color: rgb(10, 15, 29);
+      font-size: 20px;
+      text-decoration: none;
+      border: none;
+      padding: 5px;
+      transition: color 0.3s ease;
+  }
+  
+  .top-right-icons a:hover {
+      color: #FFFFFF;
+  }
+  
+  .sidebar nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 30px;
+  }
+  
+  .sidebar nav ul li {
+      margin: 20px 0;
+  }
+  
+  .sidebar nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      margin-bottom: 60px;
+      margin-left: 15px;
+      margin-top: 20px;
+      font-family: Kosugi Maru;
+  }
+  
+  .material-symbols-outlined{
+      font-size: 7px;
+      margin-left : 5px;
+      margin-bottom: 10px;
+       transform:translateY(5px);
+  }
+  /* Content Section */
+  .content {
+    width: calc(100%);
+    background-color: white;
+  }
+  
+  /* Logo Animation Section */
+  /* Video animation adjustments */
+  
+  .logo-animation .large-video {
+    width: 1400px; /* Adjust video size to be larger */
+   /* max-width: 1000px; /* Set a max width to ensure responsiveness */
+    border-radius: 0px 0px 10px 10px;
+    margin-left:0px;
+   
+  
+  }
+   
+  
+ 
+
+  /* General Styles */
+
+  
+  /* Event Container */
+  .event-container {
+    text-align: left;
+    width: 800px;
+    
+    transform: translate(80px,150px);
+  }
+  
+  /* Title */
+  .event-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-family: 'Kosugi Maru', sans-serif;
+    
+    margin-left: 15px;
+    font-family: Kosugi Maru;
+  }
+  
+  /* Event Card */
+  .event-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1em;
+    color: #333;
+    position: relative;
+  }
+  
+  .event-card p {
+    margin: 10px 0;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: 'Kosugi Maru', sans-serif;
+    
+    margin-left: 15px;
+    font-family: Kosugi Maru;
+  }
+  
+  /* Register Button */
+  .register-button {
+    background-color:#0A0F1D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    margin-top: -95px;
+    transition: background-color 0.3s;
+  }
+  
+  .register-button:hover {
+    background-color: #00cc00;
+  }
+  .map-title {
+    font-size: 28px;
+    color: rgb(4, 4, 4);
+    font-weight: normal;
+    left: 20px;
+    margin-left:  85px;
+    transform: translateY(220px);
+    font-family: 'Kosugi Maru', sans-serif;
+}
+
+.map-container{
+    margin-left: 50px;
+    transform: translateY(240px);
+    padding: 30px;
+    
+}
+
+body.dark {
+    background-color: #181818;
+    color: white;
+}
+
+body.dark .content {
+    background-color: #282828;
+    color: white;
+}
+body.dark .map-title{
+  color: white;
+
+}
+

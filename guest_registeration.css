@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Kosugi';
+    background-color: #f4f4f4;
+    color: #333;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    display: flex;
+  }
+
+  .content{
+    width: 100%;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    background-color: #0A0F1D;
+    color: white;
+    width: 150px;
+    height: 1900px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .circle-logo img {
+    width: 200px;
+    height: auto;
+    margin-left: -30px;
+  }
+  
+  .top-right-icons {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      display: flex;
+      gap: 43px;
+      margin-right: 55px;
+       z-index:1;
+  }
+  
+  .top-right-icons a {
+      color: #333;
+      font-size: 20px;
+      text-decoration: none;
+      border: none;
+      padding: 5px;
+      transition: color 0.3s ease;
+  }
+  
+  .top-right-icons a:hover {
+      color: #FFFFFF;
+  }
+  
+  .sidebar nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 30px;
+  }
+  
+  .sidebar nav ul li {
+      margin: 20px 0;
+  }
+  
+  .sidebar nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      margin-bottom: 60px;
+      margin-left: 15px;
+      margin-top: 20px;
+      font-family: Kosugi Maru;
+  }
+  
+  .material-symbols-outlined{
+      font-size: 7px;
+      margin-left : 5px;
+      margin-bottom: 10px;
+       transform:translateY(5px);
+  }
+
+  
+  /* General Styles */
+
+  
+
+  
+  /* Registration Container */
+  .registration-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 40px;
+    height: 500px;
+    width: 1000px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transform: translate(100px,100px);
+    margin-left: 75px;
+  }
+  
+  .registration-container h2 {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  /* Registration Form */
+  .registration-form input[type="text"],
+  .registration-form input[type="email"],
+  .registration-form input[type="tel"] {
+    width: calc(100% - 30px); /* Adjusted width to add space on both sides */
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    font-size: 1em;
+    color: #333;
+  }
+  
+  .registration-form input::placeholder {
+    color: #888;
+    font-size: 0.9em;
+  }
+  
+  /* Pay Now Button */
+  .registration-form button {
+    width: 250px; /* Adjusted width to match the input fields */
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    background-color: #0A0F1D;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .registration-form button:hover {
+    background-color: #02060d;
+  }
+  
+  /* Shadow for Container */
+  .registration-container {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  /* Keyframes for scroll-triggered animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+
+  body.dark {
+    background-color: #181818;
+    color: white;
+}
+
+body.dark .content {
+    background-color: #282828;
+    color: white;
+}

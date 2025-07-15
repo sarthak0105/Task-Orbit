@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="guest_registeration.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+  </head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+          <div class="circle-logo">
+            <img src="public/whatsapp-image-20240818-at-83859-amremovebgpreview-2@2x.png" alt="Logo">
+          </div>
+          <nav>
+            <ul>
+                          <li><span class="material-symbols-outlined">home</span><a href="Guest_Landing_page.html">Home</a></li>
+                       
+                        <li><span class="material-symbols-outlined">info</span><a href="About_Us.html">About us</a>
+                </li>
+            </ul>
+          </nav>
+        </aside>
+    
+        <main class="content">
+         
+                  <div class="top-right-icons">
+                    <a href="#"><i class="fas fa-bell"></i></a>
+                    <a href="#"><i class="fas fa-cog"></i></a>
+                    <a href="#"><i class="fas fa-right-from-bracket" id="logoutIcon"></i></a>
+                    <a href="#"><i id="theme-toggle" class="fas fa-moon" class="fas fa-moon"></i></a>
+                </div>
+                <div class="registration-container">
+                    <h2>Register for the Event</h2>
+                    <form id="payment-form" class="registration-form" action="#" method="post">
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="phone" placeholder="Phone no." required>
+            <button type="button" onclick="startPayment()">Pay Now</button>
+        </form>
+                  </div>
+
+
+
+
+
+
+                <script>
+                    // Theme toggle functionality
+                         const themeToggleButton = document.getElementById('theme-toggle');
+                         const currentTheme = localStorage.getItem('theme') || 'light';
+                 
+                         // Apply the saved theme on page load
+                         document.body.classList.add(currentTheme);
+                 
+                         themeToggleButton.addEventListener('click', () => {
+                             if (document.body.classList.contains('light')) {
+                                 document.body.classList.remove('light');
+                                 document.body.classList.add('dark');
+                                 localStorage.setItem('theme', 'dark');
+                                 themeToggleButton.classList.replace('fa-moon', 'fa-sun'); // Change icon to sun
+                             } else {
+                                 document.body.classList.remove('dark');
+                                 document.body.classList.add('light');
+                                 localStorage.setItem('theme', 'light');
+                                 themeToggleButton.classList.replace('fa-sun', 'fa-moon'); // Change icon to moon
+                             }
+                         });
+                 
+                           // Logout functionality when clicking the logout icon
+                       document.getElementById('logoutIcon').addEventListener('click', function () {
+                         // Optionally, clear session or localStorage data
+                         // localStorage.removeItem('userToken'); // Example if you're using localStorage
+                         
+                         // Redirect to the login page
+                         window.location.href = 'login-page.html';
+                       });
+
+
+   async function startPayment() {
+    const firstName = document.querySelector('input[name="first_name"]').value;
+    const lastName = document.querySelector('input[name="last_name"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const phone = document.querySelector('input[name="phone"]').value;
+
+    // Check if all required fields are filled
+    if (!firstName || !lastName || !email || !phone) {
+        alert('Please fill out all required fields.');
+        return; // Stop the function execution if any field is empty
+    }
+
+    const formData = { first_name: firstName, last_name: lastName, email, phone };
+
+    try {
+        const response = await fetch('/save-guest', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            // Update confirmed registrations count
+            await fetch('/update-registrations', { method: 'POST' });
+            window.location.href = '/payment-page';
+        } else {
+            alert('Error saving data. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+
+
+
+
+
+                   </script>
+                   
+                   <script src="guest_registration.js"></script>
+    
+</body>
+</html>
